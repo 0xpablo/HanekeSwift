@@ -35,7 +35,7 @@ public class NetworkFetcher<T : DataConvertible> : Fetcher<T> {
         super.init(key: key!)
     }
     
-    public var session : URLSession { return URLSession.shared() }
+    public var session : URLSession { return URLSession.shared }
     
     var task : URLSessionDataTask? = nil
     

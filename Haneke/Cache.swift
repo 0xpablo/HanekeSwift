@@ -47,11 +47,11 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
     public init(name: String) {
         self.name = name
         
-        let notifications = NotificationCenter.default()
+        let notifications = NotificationCenter.default
         // Using block-based observer to avoid subclassing NSObject
         memoryWarningObserver = notifications.addObserver(forName: NSNotification.Name.UIApplicationDidReceiveMemoryWarning,
                                                           object: nil,
-                                                          queue: OperationQueue.main(),
+                                                          queue: OperationQueue.main,
                                                           using: { [unowned self] notification in
                 self.onMemoryWarning()
             }
@@ -62,7 +62,7 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
     }
     
     deinit {
-        let notifications = NotificationCenter.default()
+        let notifications = NotificationCenter.default
         notifications.removeObserver(memoryWarningObserver, name: NSNotification.Name.UIApplicationDidReceiveMemoryWarning, object: nil)
     }
     
@@ -152,7 +152,7 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
             }
             let path = self.cachePath
             do {
-                try FileManager.default().removeItem(atPath: path)
+                try FileManager.default.removeItem(atPath: path)
             } catch {
                 Log.error(message: "Failed to remove path \(path)", error as NSError)
             }
@@ -205,7 +205,7 @@ public class Cache<T: DataConvertible where T.Result == T, T : DataRepresentable
     func formatPath(formatName: String) -> String {
         let formatPath = (self.cachePath as NSString).appendingPathComponent(formatName)
         do {
-            try FileManager.default().createDirectory(atPath: formatPath, withIntermediateDirectories: true, attributes: nil)
+            try FileManager.default.createDirectory(atPath: formatPath, withIntermediateDirectories: true, attributes: nil)
         } catch {
             Log.error(message: "Failed to create directory \(formatPath)", error as NSError)
         }
